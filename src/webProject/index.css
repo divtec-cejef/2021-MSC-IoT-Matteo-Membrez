@@ -1,0 +1,80 @@
+#content {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+#temp, #humidity {
+    padding-top: 10em;
+    padding-bottom: 10em;
+    background: turquoise;
+    border-radius: 1em;
+    width: 49.2%;
+}
+
+#temp {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+#humidity {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+div#map {
+    padding-top: 15em;
+    padding-bottom: 15em;
+}
+
+div#historic {
+    padding-bottom: 30em;
+    border-radius: 1em;
+    background: gray;
+}
+
+div#historic h1 {
+    padding: 1em;
+}
+
+div p {
+    text-align: center;
+    font-size: 3.5em;
+}
+
+/*
+Ensemble des balises
+ */
+* {
+    font-family: Comfortaa;
+    color: white;
+}
