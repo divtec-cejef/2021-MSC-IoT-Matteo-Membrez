@@ -1,4 +1,10 @@
 #include <SigFox.h>
+#include "DHT.h"
+
+#define DHTPIN 2
+
+#define DHTTYPE DHT11
+
 typedef struct __attribute__ ((packed)) sigfox_message { // see http://www.catb.org/esr/structure-packing/#_structure_alignment_and_padding
   int16_t moduleTemperature;
 } SigfoxMessage;
@@ -13,10 +19,13 @@ void reboot() {
 }
 // =================================================
 
+DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(115200);
   while (!Serial);
+
+  dht.begin();
 
   if (!SigFox.begin()) {
     Serial.println("SigFox error, rebooting");
@@ -27,15 +36,31 @@ void setup() {
 
   // Enable debug prints and LED indication
   SigFox.debug();
+  
+  // Reading temperature or humidity takes about 250 milliseconds!
+  // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
+  float h = dht.readHumidity();
+  // Read temperature as Celsius (the default)
+  float t = dht.readTemperature();
+  // Read temperature as Fahrenheit (isFahrenheit = true)
+  float f = dht.readTemperature(true);
 
-  // Read and convert the module temperature
-  msg.moduleTemperature = (int32_t) (SigFox.internalTemperature() * 100.0); // température 1/100th of degrees
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(h) || isnan(t) || isnan(f)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
+    return;
+  }
 
-  Serial.print("Internal temp: ");
-  Serial.print(msg.moduleTemperature, HEX); // display what we will send in Hexadecimal
-  Serial.print(" (");
-  Serial.print(msg.moduleTemperature); // display what we will send in Decimal
-  Serial.println(" x100 deg C)");
+  // Compute heat index in Fahrenheit (the default)
+  float hif = dht.computeHeatIndex(f, h);
+  // Compute heat index in Celsius (isFahreheit = false)
+  float hic = dht.computeHeatIndex(t, h, false);
+
+  Serial.print(F("Humidity: "));
+  Serial.print(h);
+  Serial.print(F("%  Temperature: "));
+  Serial.print(t);
+  Serial.print(F("°C\n"));
 
   // Clears all pending interrupts
   SigFox.status();
@@ -43,7 +68,9 @@ void setup() {
 
   // Send the data
   SigFox.beginPacket();
-  SigFox.write((uint8_t*)&msg, sizeof(SigfoxMessage));
+  SigFox.print(t);
+  SigFox.print("|");
+  SigFox.print(h);
 
   Serial.print("Status: ");
   Serial.println(SigFox.endPacket());
