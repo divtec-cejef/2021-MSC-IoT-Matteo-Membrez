@@ -25,6 +25,12 @@
     background: turquoise;
     border-radius: 1em;
     width: 49.2%;
+    box-shadow: 0 9px darkslategray;
+}
+
+#temp:hover, #humidity:hover {
+    transform: translateY(3px);
+    box-shadow: 0 5px darkslategray;
 }
 
 #temp {
@@ -51,6 +57,10 @@
     align-self: auto;
 }
 
+html {
+    background: #2a2a2a;
+}
+
 div#map {
     padding-top: 15em;
     padding-bottom: 15em;
@@ -60,6 +70,13 @@ div#historic {
     padding-bottom: 30em;
     border-radius: 1em;
     background: gray;
+    margin-bottom: 1em;
+    box-shadow: 0 9px #393939;
+}
+
+div#historic:hover {
+    transform: translateY(3px);
+    box-shadow: 0 5px #393939;
 }
 
 div#historic h1 {
