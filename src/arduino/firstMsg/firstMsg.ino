@@ -34,8 +34,12 @@ void setup() {
 
   delay(100); // Wait at least 30ms after first configuration
 
+}
+
+void loop() {
   // Enable debug prints and LED indication
   SigFox.debug();
+  SigFox.begin();
   
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
@@ -76,6 +80,5 @@ void setup() {
   Serial.println(SigFox.endPacket());
 
   SigFox.end();
+  delay(3600000);
 }
-
-void loop() {}
