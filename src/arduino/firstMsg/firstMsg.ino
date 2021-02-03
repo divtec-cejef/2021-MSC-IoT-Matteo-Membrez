@@ -67,18 +67,17 @@ void loop() {
   Serial.print(F("°C\n"));
 
   // Clears all pending interrupts
-  SigFox.status();
+  SigFox.status(); 
   delay(1);
 
   // Send the data
   SigFox.beginPacket();
-  SigFox.print(t);
-  SigFox.print("|");
-  SigFox.print(h);
+  SigFox.write(t);
+  SigFox.write(h);
 
   Serial.print("Status: ");
   Serial.println(SigFox.endPacket());
 
   SigFox.end();
-  delay(3600000);
+  delay(600000);
 }
