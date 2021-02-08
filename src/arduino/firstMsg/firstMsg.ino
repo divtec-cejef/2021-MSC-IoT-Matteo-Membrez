@@ -23,7 +23,6 @@ DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial);
 
   dht.begin();
 
@@ -79,5 +78,7 @@ void loop() {
   Serial.println(SigFox.endPacket());
 
   SigFox.end();
-  delay(600000);
+  
+  // Intervale en millisecondes
+  delay(3600000);
 }
