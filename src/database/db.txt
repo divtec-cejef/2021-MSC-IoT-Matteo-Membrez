@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS tb_salle
+(
+    pk_id_salle INT NOT NULL AUTO_INCREMENT,
+    nom_salle VARCHAR(50) NOT NULL UNIQUE,
+    PRIMARY KEY (pk_id_salle)
+);
+
+CREATE TABLE IF NOT EXISTS tb_message
+(
+    pk_id_message INT NOT NULL AUTO_INCREMENT,
+    date_message DATE NOT NULL,
+    seq_num_message INT NOT NULL UNIQUE,
+    temperature_message DECIMAL(5,2) NOT NULL,
+    humidite_message INT NOT NULL,
+    PRIMARY KEY (pk_id_message)
+);
+
+CREATE TABLE IF NOT EXISTS tb_capteur 
+(
+    pk_id_capteur INT NOT NULL AUTO_INCREMENT,
+    nom_capteur VARCHAR(50) NOT NULL,
+    num_id_capteur VARCHAR(10) NOT NULL UNIQUE,
+    fk_id_salle INT NOT NULL,
+    fk_id_message INT NOT NULL,
+    PRIMARY KEY (pk_id_capteur),
+    CONSTRAINT ct_fk_id_salle FOREIGN KEY (fk_id_salle) REFERENCES tb_salle(pk_id_salle),
+    CONSTRAINT ct_fk_id_message FOREIGN KEY (fk_id_message) REFERENCES tb_message(pk_id_message)
+);
+
