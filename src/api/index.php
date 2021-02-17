@@ -7,111 +7,146 @@
  */
 
 require_once 'router.php';
-require  __DIR__ . 'inc/config.inc.php';
-require  __DIR__ . 'inc/conn_inc.php';
+require  'inc/config.inc.php';
+require  'inc/conn_inc.php';
+require 'inc/functions.inc.php';
 
 // récupère l'url partielle vers le dossier en cours
 $sub_dir = dirname($_SERVER['PHP_SELF']);
 
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ********************************************************************* GET **************************************************************************** */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* ********************************************************************* Salles ************************************************************************* */
+
 /**
+ * usage: http://.../iot/api/salles
+ */
+route('get', $sub_dir . '/salles', function ($matches, $rxd) {
 
-* usage: http://.../demo/router/books
-*/
+    $data = getAllSalles()->fetchAll();
 
-route('get', $sub_dir . '/hello', function ($matches, $rxd) {
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
 
-    connDB(DB_NAME);
-
-    $data = [
-        "method" => 'get', // pour démo
-    ];
-
-
-    http_response_code(200);
     header('Content-Type: application/json');
     echo json_encode($data);
     exit();
 });
 
-
 /**
- * usage: http://.../demo/router/books/1
+ * usage: http://.../iot/api/salles/([0-9]+)
  */
-route('get', $sub_dir . '/hello/([0-9]+)', function ($matches, $rxd) {
-    $id = $matches[1][0];
-    $data = [
-        "method" => 'get', // pour démo
-        "id"     => $id
-    ];
+route('get', $sub_dir . '/salles/([0-9]+)', function ($matches, $rxd) {
 
-
-    http_response_code(200);
-    header('Content-Type: application/json');
-    echo json_encode($data);
-    exit();
-});
-
-
-/**
- * usage: http://.../demo/router/books
- * + data passée x-www-form-urlencode
- */
-route('post', $sub_dir . '/hello', function ($matches, $rxd) {
-
-    // pour démo
-    $data = [
-        "method" => 'post'
-    ];
-    $data = array_merge($data, $rxd);
-
-    http_response_code(201);
-    header('Content-Type: application/json');
-    echo json_encode($data);
-    exit();
-});
-
-
-
-
-/**
- * usage: http://.../demo/router/books/
- * + data passée x-www-form-urlencode
- */
-route('put', $sub_dir . '/hello/([0-9]+)', function ($matches, $rxd) {
     $id = $matches[1][0];
 
-    $data = [
-        "method" => 'put', // pour démo
-        "id"     => $id
-    ];
-    $data = array_merge($data, $rxd);
+    $data = getSallesById($id)->fetchAll();
 
-    http_response_code(200);
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
     header('Content-Type: application/json');
     echo json_encode($data);
     exit();
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
+/* ********************************************************************* CAPTEURS *********************************************************************** */
 
 /**
- * usage: http://../demo/router/books/1
+ * usage: http://.../iot/api/capteurs
  */
-route('delete', $sub_dir . '/hello/([0-9]+)', function ($matches, $rxd) {
-    $id = $matches[1][0];
-    $data = [
-        "method" => 'delete', // pour démo
-        "id"     => $id
-    ];
+route('get', $sub_dir . '/capteurs', function ($matches, $rxd) {
 
+    $data = getAllCapteurs()->fetchAll();
 
-    http_response_code(202);
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
     header('Content-Type: application/json');
     echo json_encode($data);
     exit();
 });
 
+/**
+ * usage: http://.../iot/api/capteurs/([0-9]+)
+ */
+route('get', $sub_dir . '/capteurs/([0-9]+)', function ($matches, $rxd) {
 
+    $id = $matches[1][0];
+
+    $data = getCapteursById($id)->fetchAll();
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* ********************************************************************* MESSAGES *********************************************************************** */
+
+/**
+ * usage: http://.../iot/api/messages
+ */
+route('get', $sub_dir . '/messages', function ($matches, $rxd) {
+
+    $data = getAllMessages()->fetchAll();
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+/**
+ * usage: http://.../iot/api/messages/([0-9]+)
+ */
+route('get', $sub_dir . '/messages/([0-9]+)', function ($matches, $rxd) {
+
+    $id = $matches[1][0];
+
+    $data = getMessagesById($id)->fetchAll();
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ********************************************************************* POST *************************************************************************** */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 // si l'url ne correspond à aucune route
 $data = [];
