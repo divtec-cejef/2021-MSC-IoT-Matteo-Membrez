@@ -18,14 +18,10 @@ $sub_dir = dirname($_SERVER['PHP_SELF']);
 /* ********************************************************************* GET **************************************************************************** */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-/* ********************************************************************* Salles ************************************************************************* */
+// Affiche toutes les valeurs de tous les capteurs
+route('get', $sub_dir . '/values', function ($matches, $rxd) {
 
-/**
- * usage: http://.../iot/api/salles
- */
-route('get', $sub_dir . '/salles', function ($matches, $rxd) {
-
-    $data = getAllSalles()->fetchAll();
+    $data = getAllValues()->fetchAll();
 
     if(empty($data)) {
         http_response_code(404);
@@ -38,98 +34,12 @@ route('get', $sub_dir . '/salles', function ($matches, $rxd) {
     exit();
 });
 
-/**
- * usage: http://.../iot/api/salles/([0-9]+)
- */
-route('get', $sub_dir . '/salles/([0-9]+)', function ($matches, $rxd) {
+// Affiche toutes les valeurs d'un capteur désigné
+route('get', $sub_dir . '/values/([0-9]+)', function ($matches, $rxd) {
 
     $id = $matches[1][0];
 
-    $data = getSallesById($id)->fetchAll();
-
-    if(empty($data)) {
-        http_response_code(404);
-    } else {
-        http_response_code(200);
-    }
-
-    header('Content-Type: application/json');
-    echo json_encode($data);
-    exit();
-});
-
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
-/* ********************************************************************* CAPTEURS *********************************************************************** */
-
-/**
- * usage: http://.../iot/api/capteurs
- */
-route('get', $sub_dir . '/capteurs', function ($matches, $rxd) {
-
-    $data = getAllCapteurs()->fetchAll();
-
-    if(empty($data)) {
-        http_response_code(404);
-    } else {
-        http_response_code(200);
-    }
-
-    header('Content-Type: application/json');
-    echo json_encode($data);
-    exit();
-});
-
-/**
- * usage: http://.../iot/api/capteurs/([0-9]+)
- */
-route('get', $sub_dir . '/capteurs/([0-9]+)', function ($matches, $rxd) {
-
-    $id = $matches[1][0];
-
-    $data = getCapteursById($id)->fetchAll();
-
-    if(empty($data)) {
-        http_response_code(404);
-    } else {
-        http_response_code(200);
-    }
-
-    header('Content-Type: application/json');
-    echo json_encode($data);
-    exit();
-});
-
-/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
-/* ********************************************************************* MESSAGES *********************************************************************** */
-
-/**
- * usage: http://.../iot/api/messages
- */
-route('get', $sub_dir . '/messages', function ($matches, $rxd) {
-
-    $data = getAllMessages()->fetchAll();
-
-    if(empty($data)) {
-        http_response_code(404);
-    } else {
-        http_response_code(200);
-    }
-
-    header('Content-Type: application/json');
-    echo json_encode($data);
-    exit();
-});
-
-/**
- * usage: http://.../iot/api/messages/([0-9]+)
- */
-route('get', $sub_dir . '/messages/([0-9]+)', function ($matches, $rxd) {
-
-    $id = $matches[1][0];
-
-    $data = getMessagesById($id)->fetchAll();
+    $data = getValuesById($id)->fetchAll();
 
     if(empty($data)) {
         http_response_code(404);
