@@ -81,3 +81,67 @@ function getValuesById($id) {
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 /* ********************************************************************* POST *************************************************************************** */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Ajoute une nouvelle mesure à la base de données
+ */
+function addNewValues($date_message, $seq_num_message, $temperature_message, $humidite_message) {
+    try {
+        // insertion des donnnées dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "INSERT INTO tb_message(date_message, seq_num_message, temperature_message, humidite_message) 
+                VALUES (:date_message, :seq_num_message, :temperature_message, :humidite_message);";
+
+        // préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        // association du marqueur à une variable (E/S)
+        $stmt->bindParam(':date_message', $date_message);
+        $stmt->bindParam(':seq_num_message', $seq_num_message, PDO::PARAM_INT);
+        $stmt->bindParam(':temperature_message', $temperature_message);
+        $stmt->bindParam(':humidite_message', $humidite_message, PDO::PARAM_INT);
+
+        // exécution de la requête
+        $stmt->execute();
+
+        // retourne le dernier index inseré.
+        return $dbh->lastInsertId();
+
+    } catch(PDOException $e) {
+        echo $e->getMessage();
+        die();
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+// Vérifie que l'appareil existe
+function verifyDevice($device) {
+    // récupération de tous les enregistrements
+    try {
+        // insertion des données dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "SELECT pk_id_capteur FROM tb_capteur
+                WHERE nom_capteur LIKE :device";
+
+        //préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        $stmt->bindParam(':device', $device);
+
+        //exécution de la requête
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        die();
+    }
+
+    // retourne un tableau d'enregistrement ou le $stmt
+    return $stmt;
+}

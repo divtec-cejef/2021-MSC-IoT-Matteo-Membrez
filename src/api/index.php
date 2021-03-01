@@ -58,6 +58,33 @@ route('get', $sub_dir . '/values/([0-9]+)', function ($matches, $rxd) {
 /* ********************************************************************* POST *************************************************************************** */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
+route('post', $sub_dir . '/values', function ($matches, $rxd) {
+
+    $json = file_get_contents("php://input");
+    $postData = json_decode($json, true);
+
+    // pour démo
+    $data = [];
+
+    $data = array_merge($data, $postData);
+
+    $date_message = date('Y-m-d H:i:s', $data['Date']);
+    $seq_num_message = $data['Numéro de séquence'];
+    $temperature_message = $data['Température'];
+    $humidite_message = $data['Humidité'];
+
+    $lastID = addNewValues($date_message, $seq_num_message, $temperature_message, $humidite_message);
+
+    $data = [];
+    $data['id'] = $lastID;
+    http_response_code(201);
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
 // si l'url ne correspond à aucune route
 $data = [];
 $data = [
