@@ -22,7 +22,7 @@
 #temp, #humidity {
     padding-top: 10em;
     padding-bottom: 10em;
-    background: turquoise;
+    /* #03A9F4 greenyellow */
     border-radius: 1em;
     width: 49.2%;
     box-shadow: 0 9px darkslategray;
@@ -43,6 +43,15 @@
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
+    background: linear-gradient(135deg,black,darkred, black, darkred, black, darkred, black, darkred);
+}
+
+#temp p:last-child {
+    font-size: 5em;
+}
+
+#humidity p:last-child {
+    font-size: 5em;
 }
 
 #humidity {
@@ -55,6 +64,7 @@
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
+    background: linear-gradient(225deg,black,darkred, black, darkred, black, darkred, black, darkred);
 }
 
 html {
@@ -67,9 +77,9 @@ div#map {
 }
 
 div#historic {
-    padding-bottom: 30em;
+    padding-bottom: 3em;
     border-radius: 1em;
-    background: gray;
+    background: linear-gradient(225deg,black,darkred, black);
     margin-bottom: 1em;
     box-shadow: 0 9px #393939;
 }
@@ -88,10 +98,42 @@ div p {
     font-size: 3em;
 }
 
+table {
+    margin: auto;
+    width: 94%;
+    border-collapse: collapse;
+
+}
+
+table tr {
+    text-align: left;
+    background-color: #444444;
+}
+
+table tr th {
+    border: 1px solid white;
+    padding: 8px;
+    background-color: darkred;
+}
+
+table tr td {
+    padding: 8px;
+    border: 1px solid #ababab;
+}
+
+table tr:nth-child(even) {
+    background-color: #444444;
+}
+
+table tr:nth-child(odd) {
+    background-color: #222222;
+}
+
 /*
 Ensemble des balises
  */
 * {
     font-family: Comfortaa;
     color: white;
+    scrollbar-color: #454a4d #202324;
 }

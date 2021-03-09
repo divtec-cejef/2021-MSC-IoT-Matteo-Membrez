@@ -18,16 +18,38 @@
 
     <div id="content">
         <div id="temp">
-            <p>Température de la salle : 20°C</p>
+            <p><?php echo $values[0]['nom_salle']; ?> - Température</p>
+            <p><?php echo $values[0]['temperature_message']; ?>°C</p>
         </div>
 
         <div id="humidity">
-            <p>Humidité de la salle : 33%</p>
+            <p><?php echo $values[0]['nom_salle']; ?> - Humidité</p>
+            <p><?php echo $values[0]['humidite_message']; ?>%</p>
         </div>
     </div>
 
     <div id="historic">
         <h1>Historique des mesures</h1>
+
+        <table>
+            <tr>
+                <th>Device</th>
+                <th>Température</th>
+                <th>Humidité</th>
+                <th>Date</th>
+                <th>Salle</th>
+            </tr>
+            <?php foreach ($values as $row) : ?>
+            <tr>
+                <td><?php echo $row['num_id_capteur']; ?></td>
+                <td><?php echo $row['temperature_message']; ?></td>
+                <td><?php echo $row['humidite_message']; ?></td>
+                <td><?php echo $row['date_message']; ?></td>
+                <td><?php echo $row['nom_salle']; ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+
     </div>
 </main>
 </body>
