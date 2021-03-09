@@ -25,12 +25,12 @@
     /* #03A9F4 greenyellow */
     border-radius: 1em;
     width: 49.2%;
-    box-shadow: 0 9px darkslategray;
+    box-shadow: 0 9px #4e0000;
 }
 
 #temp:hover, #humidity:hover {
     transform: translateY(3px);
-    box-shadow: 0 5px darkslategray;
+    box-shadow: 0 5px #4e0000;
 }
 
 #temp {
@@ -81,12 +81,12 @@ div#historic {
     border-radius: 1em;
     background: linear-gradient(225deg,black,darkred, black);
     margin-bottom: 1em;
-    box-shadow: 0 9px #393939;
+    box-shadow: 0 9px #4e0000;
 }
 
 div#historic:hover {
     transform: translateY(3px);
-    box-shadow: 0 5px #393939;
+    box-shadow: 0 5px #4e0000;
 }
 
 div#historic h1 {
