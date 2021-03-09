@@ -1,8 +1,10 @@
+<?php ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon.png" />
     <title>Atelier IoT</title>
@@ -16,11 +18,11 @@
 
     <div id="content">
         <div id="temp">
-            <p>Température de la salle : </p>
+            <p>Température de la salle : 20°C</p>
         </div>
 
         <div id="humidity">
-            <p>Humidité de la salle : </p>
+            <p>Humidité de la salle : 33%</p>
         </div>
     </div>
 

@@ -68,12 +68,16 @@ route('post', $sub_dir . '/values', function ($matches, $rxd) {
 
     $data = array_merge($data, $postData);
 
-    $date_message = date('Y-m-d H:i:s', $data['Date']);
+    $date_message = convertEpoch($data['Date']);
     $seq_num_message = $data['Numéro de séquence'];
     $temperature_message = $data['Température'];
     $humidite_message = $data['Humidité'];
+    $nom_capteur = $data['ID du capteur'];
+    $id_capteur = verifyDevice($nom_capteur);
 
-    $lastID = addNewValues($date_message, $seq_num_message, $temperature_message, $humidite_message);
+    var_dump($date_message);
+
+    $lastID = addNewValues($date_message, $seq_num_message, $temperature_message, $humidite_message, $id_capteur['pk_id_capteur']);
 
     $data = [];
     $data['id'] = $lastID;

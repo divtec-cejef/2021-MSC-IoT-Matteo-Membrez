@@ -80,5 +80,5 @@ void loop() {
   SigFox.end();
   
   // Intervale en millisecondes
-  delay(3600000);
+  delay(180000);
 }
