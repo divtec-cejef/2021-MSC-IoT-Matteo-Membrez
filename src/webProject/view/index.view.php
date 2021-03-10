@@ -13,7 +13,13 @@
 <main>
 
     <div id="map">
+        <img src="../img/map.jpg" alt="The map" usemap="#plan">
 
+        <map name="plan">
+            <area target="" alt="B1-15" title="B1-15" href="#" coords="20,23,252,281" shape="rect">
+            <area target="" alt="B1-04" title="B1-04" href="#" coords="21,283,252,384" shape="rect">
+            <area target="" alt="B1-13" title="B1-13" href="#" coords="449,282,679,500" shape="rect">
+        </map>
     </div>
 
     <div id="content">

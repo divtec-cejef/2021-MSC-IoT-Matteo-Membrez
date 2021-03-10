@@ -1,6 +1,10 @@
 <?php
 
-// Fonction de connexion à la base de données
+/**
+ * Fonction de connexion à la base de données
+ * @param $base le nom de la base de données
+ * @return PDO l'état de la connexion
+ */
 function connDB($base) {
 
     $user='1v2ue_membmat';

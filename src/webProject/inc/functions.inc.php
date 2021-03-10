@@ -5,14 +5,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /**
- * Retourne toutes les valeurs
- * nom_capteur : Le nom du capteur
- * num_id_capteur : Le numéro identifiant du capteur
- * nom_salle : Nom de la salle où se trouve le capteur
- * seq_num_message : Le numéro de séquence du message
- * temperature_message : La mesure de la température
- * humidite_message : La mesure de l'humidité
- * date_message : La date et l'heure de la mesure
+ * @return false|PDOStatement toutes les valeurs de chaque capteurs
  */
 function getAllValues() {
     // récupération de tous les enregistrements
@@ -43,7 +36,11 @@ function getAllValues() {
     return $stmt;
 }
 
-// Récupère toutes les valeurs d'un capteur par son identifiant
+/**
+ * Récupère toutes les valeurs d'un capteur par son identifiant
+ * @param $id l'identifiant du capteur dont on veut récupérer les valeurs
+ * @return false|PDOStatement un tableau d'enregistrement
+ */
 function getValuesById($id) {
     // récupération de tous les enregistrements
     try {
@@ -84,6 +81,12 @@ function getValuesById($id) {
 
 /**
  * Ajoute une nouvelle mesure à la base de données
+ * @param $date_message La date du message
+ * @param $seq_num_message Le numéro de séquence du message
+ * @param $temperature_message La mesure de la température
+ * @param $humidite_message La mesure de l'humidité
+ * @param $fk_id_capteur La clé étrangère qui représente le capteur
+ * @return string Le dernier identifiant inséré
  */
 function addNewValues($date_message, $seq_num_message, $temperature_message, $humidite_message, $fk_id_capteur) {
     try {
@@ -120,7 +123,11 @@ function addNewValues($date_message, $seq_num_message, $temperature_message, $hu
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-// Vérifie que l'appareil existe
+/**
+ * Vérifie que l'appareil existe
+ * @param $device le nom de l'appareil
+ * @return mixed l'identifiant du capteur
+ */
 function verifyDevice($device) {
     // récupération de tous les enregistrements
     try {
