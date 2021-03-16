@@ -73,6 +73,128 @@ function getValuesById($id) {
     return $stmt;
 }
 
+/**
+ * @return false|PDOStatement toutes les salles
+ */
+function getAllSalles() {
+    // récupération de tous les enregistrements
+    try {
+        // insertion des données dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "SELECT nom_salle FROM tb_salle";
+
+        //préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        //exécution de la requête
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        die();
+    }
+
+    // retourne un tableau d'enregistrement ou le $stmt
+    return $stmt;
+}
+
+/**
+ * @param $name_salle le nom de la salle à rechercher
+ * @return false|PDOStatement la salle recherchée
+ */
+function getValuesBySalles($name_salle) {
+    // récupération de tous les enregistrements
+    try {
+        // insertion des données dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "SELECT tb_capteur.nom_capteur, tb_capteur.num_id_capteur, tb_salle.nom_salle, tb_message.seq_num_message, tb_message.temperature_message, tb_message.humidite_message, tb_message.date_message
+                FROM tb_capteur 
+	            INNER JOIN tb_salle ON tb_capteur.fk_id_salle = tb_salle.pk_id_salle 
+	            INNER JOIN tb_message ON tb_capteur.pk_id_capteur = tb_message.fk_id_capteur
+	            WHERE tb_salle.nom_salle = :name_salle
+	            ORDER BY tb_message.seq_num_message DESC";
+
+        //préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        $stmt->bindParam(':name_salle', $name_salle, PDO::PARAM_INT);
+
+        //exécution de la requête
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        die();
+    }
+
+    // retourne un tableau d'enregistrement ou le $stmt
+    return $stmt;
+}
+
+/**
+ * @return false|PDOStatement tous les capteurs avec leurs salles
+ */
+function getAllCapteur() {
+    // récupération de tous les enregistrements
+    try {
+        // insertion des données dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "SELECT nom_capteur, num_id_capteur, tb_salle.nom_salle FROM tb_capteur
+                INNER JOIN tb_salle ON tb_capteur.fk_id_salle = tb_salle.pk_id_salle ";
+
+        //préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        //exécution de la requête
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        die();
+    }
+
+    // retourne un tableau d'enregistrement ou le $stmt
+    return $stmt;
+}
+
+/**
+ * @return false|PDOStatement tous les messages avec leur capteur
+ */
+function getAllMessage() {
+    // récupération de tous les enregistrements
+    try {
+        // insertion des données dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "SELECT date_message, seq_num_message, temperature_message, humidite_message, nom_capteur FROM tb_message
+                INNER JOIN tb_capteur ON tb_message.fk_id_capteur = tb_capteur.pk_id_capteur ";
+
+        //préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        //exécution de la requête
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        die();
+    }
+
+    // retourne un tableau d'enregistrement ou le $stmt
+    return $stmt;
+}
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -118,6 +240,49 @@ function addNewValues($date_message, $seq_num_message, $temperature_message, $hu
     } catch(PDOException $e) {
         echo $e->getMessage();
         die();
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ********************************************************************* DELETE ************************************************************************* */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * @param $num_seq Le numéro de séquence de la valeur a supprimer
+ * @return false|PDOStatement
+ */
+function deleteValueBySequence($num_seq) {
+    // récupération de tous les enregistrements
+    try {
+        // insertion des données dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "DELETE FROM tb_message WHERE seq_num_message = :num_seq";
+
+        //préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        $stmt->bindParam(':num_seq', $num_seq, PDO::PARAM_INT);
+
+        //exécution de la requête
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        $nbModification = $stmt->rowCount();
+
+        if ($nbModification >0) {
+            return $nbModification . ' utilisateur supprimé';
+        } else {
+            return 'aucun utilisateur supprimé';
+        }
+
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    } catch (Exception $e) {
+        die($e->getMessage());
     }
 }
 

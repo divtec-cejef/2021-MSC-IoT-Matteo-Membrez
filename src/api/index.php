@@ -52,7 +52,71 @@ route('get', $sub_dir . '/values/([0-9]+)', function ($matches, $rxd) {
     exit();
 });
 
+// Affiche toutes les salles
+route('get', $sub_dir . '/salles', function ($matches, $rxd) {
 
+    $data = getAllSalles()->fetchAll();
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+// Affiche toutes les valeurs d'un capteur désigné
+route('get', $sub_dir . '/salles/([A-Z-0-9]+)', function ($matches, $rxd) {
+
+    $name_salle = $matches[1][0];
+
+    $data = getValuesBySalles($name_salle)->fetchAll();
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+// Affiche tous les capteurs
+route('get', $sub_dir . '/capteurs', function ($matches, $rxd) {
+
+    $data = getAllCapteur()->fetchAll();
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+// Affiche tous les messages
+route('get', $sub_dir . '/messages', function ($matches, $rxd) {
+
+    $data = getAllMessage()->fetchAll();
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
@@ -84,6 +148,31 @@ route('post', $sub_dir . '/values', function ($matches, $rxd) {
     $data = [];
     $data['id'] = $lastID;
     http_response_code(201);
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ********************************************************************* DELETE ************************************************************************* */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+route('delete', $sub_dir . '/values/([0-9]+)', function ($matches, $rxd) {
+
+    $num_seq = $matches[1][0];
+
+    $lastID = deleteValueBySequence($num_seq);
+
+    $data['id'] = $lastID;
+
+    if(empty($data)) {
+        http_response_code(404);
+    } else {
+        http_response_code(200);
+    }
+
     header('Content-Type: application/json');
     echo json_encode($data);
     exit();
