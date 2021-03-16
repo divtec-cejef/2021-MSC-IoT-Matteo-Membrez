@@ -69,7 +69,7 @@ route('get', $sub_dir . '/salles', function ($matches, $rxd) {
 });
 
 // Affiche toutes les valeurs d'un capteur désigné
-route('get', $sub_dir . '/salles/([A-Z-0-9]+)', function ($matches, $rxd) {
+route('get', $sub_dir . '/salles/([A-Z-a-z-0-9]+)', function ($matches, $rxd) {
 
     $name_salle = $matches[1][0];
 

@@ -13,12 +13,20 @@
 <main>
 
     <div id="map">
-        <img src="../img/map.jpg" alt="The map" usemap="#plan">
+        <img class="map" src="../img/map.png" alt="The map" usemap="#plan">
 
         <map name="plan">
-            <area target="" alt="B1-15" title="B1-15" href="?salle=B1-15" coords="20,23,252,281" shape="rect">
-            <area target="" alt="B1-04" title="B1-04" href="?salle=B1-04" coords="21,283,252,384" shape="rect">
-            <area target="" alt="B1-13" title="B1-13" href="?salle=B1-13" coords="449,282,679,500" shape="rect">
+            <area target="" alt="B1-15" title="B1-15" href="?salle=B1-15" coords="25,228,181,388" shape="rect">
+            <area target="" alt="Bureau-PJU" title="Bureau-PJU" href="?salle=Bureau-PJU" coords="24,17,184,148" shape="rect">
+            <area target="" alt="B1-13" title="B1-13" href="?salle=B1-13" coords="205,231,340,387" shape="rect">
+            <area target="" alt="B1-21" title="B1-21" href="?salle=B1-21" coords="160,483,221,598" shape="rect">
+            <area target="" alt="B1-08" title="B1-08" href="?salle=B1-08" coords="480,226,596,387" shape="rect">
+            <area target="" alt="B1-05" title="B1-05" href="?salle=B1-05" coords="603,227,800,385" shape="rect">
+            <area target="" alt="B1-04" title="B1-04" href="?salle=B1-04" coords="807,227,924,385" shape="rect">
+            <area target="" alt="Bocal" title="Bocal" href="?salle=Bocal" coords="931,228,1004,304" shape="rect">
+            <area target="" alt="B1-02" title="B1-02" href="?salle=B1-02" coords="1009,227,1128,388" shape="rect">
+            <area target="" alt="B1-01" title="B1-01" href="?salle=B1-01" coords="1131,227,1258,478" shape="rect">
+            <area target="" alt="Couloir" title="Couloir" href="?salle=Couloir" coords="24,392,1128,478" shape="rect">
         </map>
     </div>
 

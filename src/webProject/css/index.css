@@ -1,3 +1,7 @@
+:root {
+    color-scheme: dark;
+}
+
 #content {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -139,5 +143,4 @@ Ensemble des balises
 * {
     font-family: Comfortaa;
     color: white;
-    scrollbar-color: #454a4d #202324;
 }
