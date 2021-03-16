@@ -103,7 +103,6 @@ table {
     margin: auto;
     width: 94%;
     border-collapse: collapse;
-
 }
 
 table tr {
@@ -128,6 +127,10 @@ table tr:nth-child(even) {
 
 table tr:nth-child(odd) {
     background-color: #222222;
+}
+
+.edit, .delete {
+    text-align: center;
 }
 
 /*
