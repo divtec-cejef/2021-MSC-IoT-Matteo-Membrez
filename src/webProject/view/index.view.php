@@ -12,6 +12,8 @@
 <body>
 <main>
 
+    <h1>Atelier IoT / Membrez Matteo</h1>
+
     <div id="map">
         <img class="map" src="../img/map.png" alt="The map" usemap="#plan">
 
@@ -22,9 +24,9 @@
             <area target="" alt="B1-21" title="B1-21" href="?salle=B1-21" coords="160,483,221,598" shape="rect">
             <area target="" alt="B1-08" title="B1-08" href="?salle=B1-08" coords="480,226,596,387" shape="rect">
             <area target="" alt="B1-05" title="B1-05" href="?salle=B1-05" coords="603,227,800,385" shape="rect">
-            <area target="" alt="B1-04" title="B1-04" href="?salle=B1-04" coords="807,227,924,385" shape="rect">
+            <area target="" alt="B1-04" title="B1-04" href="?salle=B1-04" coords="807,227,806,383,968,385,970,309,924,309,922,226" shape="poly">
             <area target="" alt="Bocal" title="Bocal" href="?salle=Bocal" coords="931,228,1004,304" shape="rect">
-            <area target="" alt="B1-02" title="B1-02" href="?salle=B1-02" coords="1009,227,1128,388" shape="rect">
+            <area target="" alt="B1-02" title="B1-02" href="?salle=B1-02" coords="1008,228,1125,228,1126,387,970,384,972,310,1007,307" shape="poly">
             <area target="" alt="B1-01" title="B1-01" href="?salle=B1-01" coords="1131,227,1258,478" shape="rect">
             <area target="" alt="Couloir" title="Couloir" href="?salle=Couloir" coords="24,392,1128,478" shape="rect">
         </map>
@@ -65,7 +67,7 @@
                 <td><?php echo $row['date_message']; ?></td>
                 <td><?php echo $row['nom_salle']; ?></td>
                 <td class="edit"><a href="?act=upd"><img src="../img/editer.png" alt="bouton d'édition" width="40px" height="40px"></a></td>
-                <td class="delete"><a href="?act=del"><img src="../img/delete.png" alt="bouton de supression" width="40px" height="40px"></a></td>
+                <td class="delete"><a href="?act=del&id=<?=$row['seq_num_message']?>"><img src="../img/delete.png" alt="bouton de supression" width="40px" height="40px"></a></td>
             </tr>
             <?php endforeach; ?>
         </table>

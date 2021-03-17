@@ -2,6 +2,10 @@
     color-scheme: dark;
 }
 
+h1 {
+    text-align: right;
+}
+
 #content {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -96,6 +100,7 @@ div#historic:hover {
 
 div#historic h1 {
     padding: 1em;
+    text-align: left;
 }
 
 div p {
