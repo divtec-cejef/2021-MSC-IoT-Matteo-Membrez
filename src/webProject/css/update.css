@@ -1,0 +1,104 @@
+:root {
+    color-scheme: dark;
+}
+
+html {
+    height: 100%;
+    background: #2a2a2a;
+}
+body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.mesure-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.mesure-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.mesure-box .mesure {
+    position: relative;
+}
+
+.mesure-box .mesure input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+.mesure-box .mesure label {
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.button-maj {
+    padding: 1em;
+    border-radius: 1em;
+    background-color: darkred;
+    box-shadow: 0 4px #4e0000;
+}
+
+.button-maj:hover {
+    transform: translateY(3px);
+    box-shadow: 0 2px #4e0000;
+}
+
+.button-maj-box {
+    text-align: left;
+}
+
+.button-cancel {
+    padding: 1em;
+    border-radius: 1em;
+    background-color: #444444;
+    box-shadow: 0 4px #2a2a2a;
+}
+
+.button-cancel:hover {
+    transform: translateY(3px);
+    box-shadow: 0 2px #2a2a2a;
+}
+
+.button-maj-box, .button-cancel-box {
+    display: inline-block;
+}
+
+
+/*
+Ensemble des balises
+
+* {
+    font-family: Comfortaa;
+    color: white;
+}
+*/

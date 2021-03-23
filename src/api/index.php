@@ -180,6 +180,37 @@ route('delete', $sub_dir . '/values/([0-9]+)', function ($matches, $rxd) {
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ********************************************************************* DELETE ************************************************************************* */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+route('put', $sub_dir . '/values/([0-9]+)', function ($matches, $rxd) {
+
+    $json = file_get_contents("php://input");
+    $postData = json_decode($json, true);
+
+    $num_seq = $matches[1][0];
+
+    // pour démo
+    $data = [];
+
+    $data = array_merge($data, $postData);
+
+    $temperature_message = $data['Température'];
+    $humidite_message = $data['Humidité'];
+
+    $lastID = updateValueBySequence($num_seq, $temperature_message, $humidite_message);
+
+    $data = [];
+    $data['id'] = $lastID;
+    http_response_code(201);
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit();
+});
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
 // si l'url ne correspond à aucune route
 $data = [];
 $data = [

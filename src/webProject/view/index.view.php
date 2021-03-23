@@ -66,7 +66,7 @@
                 <td><?php echo $row['humidite_message']; ?> %</td>
                 <td><?php echo $row['date_message']; ?></td>
                 <td><?php echo $row['nom_salle']; ?></td>
-                <td class="edit"><a href="?act=upd"><img src="../img/editer.png" alt="bouton d'édition" width="40px" height="40px"></a></td>
+                <td class="edit"><a href="?act=upd&id=<?=$row['seq_num_message']?>&temp=<?=$row['temperature_message']?>&humi=<?=$row['humidite_message']?>"><img src="../img/editer.png" alt="bouton d'édition" width="40px" height="40px"></a></td>
                 <td class="delete"><a href="?act=del&id=<?=$row['seq_num_message']?>"><img src="../img/delete.png" alt="bouton de supression" width="40px" height="40px"></a></td>
             </tr>
             <?php endforeach; ?>

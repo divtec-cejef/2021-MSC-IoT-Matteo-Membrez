@@ -250,6 +250,7 @@ function addNewValues($date_message, $seq_num_message, $temperature_message, $hu
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 /**
+ * Supprime le message du numéro de séquence indiqué
  * @param $num_seq Le numéro de séquence de la valeur a supprimer
  * @return false|PDOStatement
  */
@@ -282,6 +283,49 @@ function deleteValueBySequence($num_seq) {
     } catch (PDOException $e) {
         die($e->getMessage());
     } catch (Exception $e) {
+        die($e->getMessage());
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* ********************************************************************* UPDATE ************************************************************************* */
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Mets à jour la valeur du numéro de séquence indiqué
+ * @param $num_seq Le numéro de séquence du message à modifier
+ * @param $temperature_message la nouvelle mesure de la température
+ * @param $humidite_message la nouvelle mesure de l'humidité
+ * @return int Le nombre de lignes affectées par la requête
+ */
+function updateValueBySequence($num_seq ,$temperature_message, $humidite_message) {
+    // récupération de tous les enregistrements
+    try {
+        // insertion des données dans la base de données
+        $dbh = connDB(DB_NAME);
+
+        // modèle de requête
+        $sql = "UPDATE tb_message SET
+                temperature_message = :temperature_message,
+                humidite_message = :humidite_message
+                WHERE seq_num_message = :num_seq;";
+
+        //préparation de la requête sur le serveur
+        $stmt = $dbh->prepare($sql);
+
+        $stmt->bindParam(':num_seq', $num_seq, PDO::PARAM_INT);
+        $stmt->bindParam(':temperature_message', $temperature_message);
+        $stmt->bindParam(':humidite_message', $humidite_message, PDO::PARAM_INT);
+
+        //exécution de la requête
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        return $stmt->rowCount();
+
+    } catch (PDOException $e) {
         die($e->getMessage());
     }
 }

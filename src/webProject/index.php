@@ -25,4 +25,46 @@ if(isset($act) && $act==='del') {
     header('location:index.php');
 }
 
+if(isset($act) && $act==='upd') {
+
+    // initialisation des variables
+    $errors = [];
+    $temperature = '';
+    $humidite = '';
+    $api_url = 'http://membmat.divtec.me/iot/api/values/' . $_GET['id'];
+
+    if(isset($_POST['z_frm'])) {
+
+        // la température est invalide
+        if(empty($_POST['z_temperature']))
+            $errors[] = "La température doit être renseignée";
+
+        else {
+            $temperature = $_POST['z_temperature'];
+        }
+
+        // l'humidité est invalide
+        if(empty($_POST['z_humidite']))
+            $errors[] = "L'humidité doit être renseignée";
+        else {
+            $humidite = $_POST['z_humidite'];
+        }
+
+        // vérifier qu'aucune erreur ne soit survenue
+        if(empty($errors) === true) {
+            // appelle de la fonction de modification
+
+        } else {
+            // présente la vue de mise à jour
+            include VIEW_DIR . 'update.view.php';
+            exit();
+        }
+    } else {
+
+
+        include VIEW_DIR . 'update.view.php';
+        exit();
+    }
+}
+
 require VIEW_DIR . 'index.view.php';
