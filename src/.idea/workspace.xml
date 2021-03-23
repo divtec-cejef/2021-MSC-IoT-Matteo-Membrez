@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d6d0be99-b500-4e1e-9e71-96f4c252228b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webProject/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/webProject/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webProject/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/webProject/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webProject/css/update.css" beforeDir="false" afterPath="$PROJECT_DIR$/webProject/css/update.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +31,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -49,7 +50,7 @@
       <updated>1615984524105</updated>
       <workItem from="1615984525310" duration="5319000" />
       <workItem from="1616049365615" duration="693000" />
-      <workItem from="1616483306633" duration="16514000" />
+      <workItem from="1616483306633" duration="22906000" />
     </task>
     <servers />
   </component>
