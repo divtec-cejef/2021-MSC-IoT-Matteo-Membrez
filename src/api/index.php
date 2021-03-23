@@ -203,7 +203,7 @@ route('put', $sub_dir . '/values/([0-9]+)', function ($matches, $rxd) {
 
     $data = [];
     $data['id'] = $lastID;
-    http_response_code(201);
+    http_response_code(200);
     header('Content-Type: application/json');
     echo json_encode($data);
     exit();

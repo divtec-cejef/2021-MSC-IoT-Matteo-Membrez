@@ -31,7 +31,6 @@ if(isset($act) && $act==='upd') {
     $errors = [];
     $temperature = '';
     $humidite = '';
-    $api_url = 'http://membmat.divtec.me/iot/api/values/' . $_GET['id'];
 
     if(isset($_POST['z_frm'])) {
 
@@ -53,6 +52,12 @@ if(isset($act) && $act==='upd') {
         // vérifier qu'aucune erreur ne soit survenue
         if(empty($errors) === true) {
             // appelle de la fonction de modification
+            $api_url = 'http://membmat.divtec.me/iot/api/values/' . $_GET['id'];
+
+            $data = array('Température' => $_POST['z_temperature'], 'Humidité' => $_POST['z_humidite']);
+
+            $result = CallAPI('PUT', $api_url, $data);
+            header('location:index.php');
 
         } else {
             // présente la vue de mise à jour
