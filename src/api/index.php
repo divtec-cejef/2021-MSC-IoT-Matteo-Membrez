@@ -89,7 +89,7 @@ route('get', $sub_dir . '/salles/([A-Z-a-z-0-9]+)', function ($matches, $rxd) {
 // Affiche tous les capteurs
 route('get', $sub_dir . '/capteurs', function ($matches, $rxd) {
 
-    $data = getAllCapteur()->fetchAll();
+    $data = getAllCapteurs()->fetchAll();
 
     if(empty($data)) {
         http_response_code(404);
@@ -105,7 +105,7 @@ route('get', $sub_dir . '/capteurs', function ($matches, $rxd) {
 // Affiche tous les messages
 route('get', $sub_dir . '/messages', function ($matches, $rxd) {
 
-    $data = getAllMessage()->fetchAll();
+    $data = getAllMessages()->fetchAll();
 
     if(empty($data)) {
         http_response_code(404);

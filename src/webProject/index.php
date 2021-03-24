@@ -66,7 +66,6 @@ if(isset($act) && $act==='upd') {
         }
     } else {
 
-
         include VIEW_DIR . 'update.view.php';
         exit();
     }

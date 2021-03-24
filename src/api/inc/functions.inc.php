@@ -140,7 +140,7 @@ function getValuesBySalles($name_salle) {
 /**
  * @return false|PDOStatement tous les capteurs avec leurs salles
  */
-function getAllCapteur() {
+function getAllCapteurs() {
     // récupération de tous les enregistrements
     try {
         // insertion des données dans la base de données
@@ -169,7 +169,7 @@ function getAllCapteur() {
 /**
  * @return false|PDOStatement tous les messages avec leur capteur
  */
-function getAllMessage() {
+function getAllMessages() {
     // récupération de tous les enregistrements
     try {
         // insertion des données dans la base de données
